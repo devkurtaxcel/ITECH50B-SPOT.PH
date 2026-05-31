@@ -383,7 +383,65 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       drivers: knowledge.getPublishedDrivers ? knowledge.getPublishedDrivers() : [],
       selections
+    };  }
+
+  function buildClientSystemPrompt(context) {
+    const routeSummary = (context.routes || []).map(function(route) {
+      return `${route.label}: ${route.origin} to ${route.destination}. Vehicles: ${route.vehicleTypes.join(', ')}.`;
+    }).join('\n');
+
+    let fleetText = '';
+    if (context.fleet && context.fleet.summary && context.fleet.summary.byType) {
+      fleetText = Object.keys(context.fleet.summary.byType).map(function(type) {
+        const item = context.fleet.summary.byType[type];
+        return `${type}: total ${item.total}, available ${item.available}, limited ${item.limited}, unavailable ${item.unavailable}`;
+      }).join('\n');
+    }
+
+    const drivers = (context.drivers || []).slice(0, 5).map(function(driver) {
+      const contact = driver.phone || driver.contactText || 'No phone';
+      return `${driver.name} | ${driver.routeLabel || driver.route} | ${driver.vehicleType} | ${contact}`;
+    }).join('\n');
+
+    const formatCurrency = function(val) {
+      return 'PHP ' + Number(val || 0).toFixed(2);
     };
+
+    const fareExamples = [
+      knowledge.getFareEstimate('dasma', 'indang', 'jeepney', 'regular'),
+      knowledge.getFareEstimate('trece', 'indang', 'jeepney', 'regular'),
+      knowledge.getFareEstimate('trece', 'indang', 'bus', 'regular'),
+      knowledge.getFareEstimate('alfonso', 'indang', 'bus', 'student'),
+      knowledge.getFareEstimate('olivarez', 'indang', 'jeepney', 'senior')
+    ].filter(Boolean).map(function(item) {
+      const titleCase = function(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      };
+      return `${titleCase(item.vehicleType)} ${titleCase(item.startLocation)} to ${titleCase(item.destination)} (${item.passengerType}): ${formatCurrency(item.fare)} over ${item.distanceKm} km.`;
+    }).join('\n');
+
+    return [
+      'You are the spot.ph assistant for a local public transport site in Cavite, Philippines.',
+      'Answer briefly and directly.',
+      'Reply in the same language and style as the user when possible, including Tagalog or Taglish.',
+      'Only answer questions about spot.ph transport topics: routes, fares, vehicles, driver records, the driver portal, and Cavite gas prices.',
+      'If the user asks about unrelated topics, refuse briefly and invite a transport-related question.',
+      'Use only the provided context. If the data is not present, say that clearly.',
+      'If the user asks for fares, prefer exact estimates from the fare matrix.',
+      'If the user asks for routes or vehicles, answer from the current fleet and route context.',
+      '',
+      'Routes:',
+      routeSummary,
+      '',
+      'Fleet:',
+      fleetText || 'No fleet data available.',
+      '',
+      'Published drivers:',
+      drivers || 'No published drivers.',
+      '',
+      'Fare matrix examples:',
+      fareExamples || 'Fare data unavailable.'
+    ].join('\n');
   }
 
   async function loadConfig() {
@@ -403,7 +461,11 @@ document.addEventListener('DOMContentLoaded', function() {
         setStatus('Local grounded answers are active. Add a key for real AI chat.', 'local');
       }
     } catch (error) {
-      setStatus('Assistant config unavailable. Local answers may still work.', 'warning');
+      if (localKey) {
+        setStatus('Real AI enabled on this device (offline mode).', 'ai');
+      } else {
+        setStatus('Assistant config unavailable. Local answers may still work.', 'warning');
+      }
     }
   }
 
@@ -424,6 +486,82 @@ document.addEventListener('DOMContentLoaded', function() {
     setStatus('Thinking...', 'loading');
     const typingIndicator = showTypingIndicator();
 
+    const providerKey = readProviderKey();
+
+    // If key is present on static client-side (Netlify), call Pollinations directly from the browser!
+    if (providerKey) {
+      try {
+        let answer = '';
+        let meta = 'Real AI reply (client)';
+        let mode = 'ai';
+
+        const exactFareAnswer = clientFareAnswer(text);
+        if (exactFareAnswer) {
+          answer = exactFareAnswer;
+          meta = 'Calculated from site fare data';
+          mode = 'grounded';
+        } else {
+          const clientContext = buildContext();
+          const clientSystemPrompt = buildClientSystemPrompt(clientContext);
+          const messages = [{ role: 'system', content: clientSystemPrompt }];
+          state.history.slice(-8).forEach(function(entry) {
+            messages.push({ role: entry.role, content: entry.content });
+          });
+
+          const response = await fetch('https://gen.pollinations.ai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + providerKey
+            },
+            body: JSON.stringify({
+              model: 'openai',
+              messages: messages,
+              temperature: 0.2,
+              max_tokens: 280
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error('AI provider request failed');
+          }
+
+          const payload = await response.json();
+          answer = payload && payload.choices && payload.choices[0] && payload.choices[0].message
+            ? payload.choices[0].message.content
+            : '';
+          if (!answer) {
+            throw new Error('AI provider returned an empty response');
+          }
+        }
+
+        removeTypingIndicator(typingIndicator);
+        state.history.push({ role: 'assistant', content: answer, meta: meta });
+        addMessage('assistant', answer, meta);
+        saveHistory();
+
+        if (mode === 'ai') {
+          setStatus('Real AI is active.', 'ai');
+        } else {
+          setStatus('Local grounded answers are active.', 'local');
+        }
+      } catch (error) {
+        const fallback = 'The assistant could not reply right now.';
+        removeTypingIndicator(typingIndicator);
+        state.history.push({ role: 'assistant', content: fallback, meta: 'Request error' });
+        addMessage('assistant', fallback, 'Request error');
+        saveHistory();
+        setStatus('Assistant request failed.', 'warning');
+      } finally {
+        state.sending = false;
+        sendButton.disabled = false;
+        input.disabled = false;
+        input.focus();
+      }
+      return;
+    }
+
+    // Default server-side API call fallback
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -432,7 +570,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         body: JSON.stringify({
           message: text,
-          providerKey: readProviderKey(),
+          providerKey: providerKey,
           history: state.history.slice(-10).map(function(entry) {
             return { role: entry.role, content: entry.content };
           }),
@@ -443,6 +581,14 @@ document.addEventListener('DOMContentLoaded', function() {
       const payload = await response.json();
       if (!response.ok) {
         throw new Error(payload && payload.error ? payload.error : 'Assistant request failed.');
+      }
+
+      const exactFareAnswer = clientFareAnswer(text);
+      if (exactFareAnswer) {
+        payload.answer = exactFareAnswer;
+        payload.mode = 'grounded';
+        payload.provider = 'local';
+        payload.note = 'Calculated from site fare data';
       }
 
       const meta = payload.note || (payload.mode === 'ai'
