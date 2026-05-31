@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Route Information | spot.ph</title>
+    <link rel="stylesheet" href="../styles/main.css?v=20260531ae" />
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+    <link rel="icon" href="../img/logo(trans)/6.png" type="image/png">
+  </head>
+  <body class="page-loading">
+    <div class="page-skeleton" aria-hidden="true">
+      <div class="page-skeleton__header"></div>
+      <div class="page-skeleton__body">
+        <span class="page-skeleton__line page-skeleton__line--eyebrow"></span>
+        <span class="page-skeleton__line page-skeleton__line--title"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy page-skeleton__line--short"></span>
+        <div class="page-skeleton__grid">
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+        </div>
+      </div>
+    </div>
+    <div data-layer="main-container" class="desktop">
+      <header data-layer="header" class="header">
+        <a href="../index.html" data-layer="logo" class="logo">spot.ph</a>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav id="site-nav" data-layer="navigation" class="nav" role="navigation" aria-hidden="true">
+          <a href="dashboard.html" class="nav-item">Dashboard</a>
+          <a href="fare.html" class="nav-item">Fare</a>
+          <a href="routes.html" class="nav-item">Routes</a>
+          <a href="directory.html" class="nav-item">Drivers</a>
+          <a href="driver.html" class="nav-item">Portal</a>
+          <a href="gas.html" class="nav-item">Gas</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+      </header>
+
+      <main class="main-content main-content--atmosphere">
+        <div class="page-atmosphere" aria-hidden="true">
+          <span class="page-atmosphere__grid"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--one"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--two"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--three"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--left"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--right"></span>
+        </div>
+        <section class="section">
+          <div class="section-heading section-heading--with-visual">
+            <div class="section-heading__visual" aria-hidden="true">
+              <dotlottie-wc class="lottie-animation" src="https://lottie.host/2b9523e9-5156-44cb-a726-a7b6a5c530f3/LQa8vAJxbW.lottie" data-lottie-src="https://lottie.host/2b9523e9-5156-44cb-a726-a7b6a5c530f3/LQa8vAJxbW.lottie" autoplay loop aria-hidden="true"></dotlottie-wc>
+            </div>
+            <div class="section-heading__content">
+              <h2 class="section-title">Route Information</h2>
+              <p class="page-intro">Open the route maps for the main trips from Indang.</p>
+            </div>
+          </div>
+
+          <div class="route-quickview">
+            <div class="route-btns-row">
+              <div class="route-buttons">
+                <button class="route-btn" data-target="route-indang-alfonso">Indang to Alfonso</button>
+                <button class="route-btn" data-target="route-indang-trece">Indang to Trece</button>
+                <button class="route-btn" data-target="route-indang-dasma">Indang to Dasma</button>
+                <button class="route-btn" data-target="route-indang-olivarez">Indang to Olivarez</button>
+                <button class="route-btn" data-target="route-all">Show All</button>
+              </div>
+              <div class="routes-toggle-container">
+                <button id="routes-toggle-btn" class="route-btn" aria-expanded="true" aria-pressed="true">Hide Maps</button>
+              </div>
+            </div>
+
+            <div class="route-maps">
+              <div id="route-indang-alfonso" class="route-iframe">
+                <iframe title="Indang to Alfonso route map" src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d47348.60484583197!2d120.84547643983242!3d14.166538078187203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x33bd83f2fd0718eb%3A0x787d78d69e68ed8f!2sIndang%20Transport%20Terminal!3m2!1d14.196784!2d120.87781749999999!4m5!1s0x33bd83677d259bcd%3A0xd849c38e865acd4a!2siFUEL%20ALFONSO%20TERMINAL%2C%20Mangas-Alfonso%20Road%2C%20Alfonso%2C%20Cavite!3m2!1d14.1339817!2d120.8584547!5e1!3m2!1sen!2sph!4v1763992286823!5m2!1sen!2sph" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <div id="route-indang-trece" class="route-iframe">
+                <iframe title="Indang to Trece route map" src="https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d94666.92081415292!2d120.83721431916418!3d14.238958849095921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e6!4m5!1s0x33bd83f2fd0718eb%3A0x787d78d69e68ed8f!2sIndang%20Transport%20Terminal%2C%20Indang%2C%20Cavite!3m2!1d14.196784!2d120.87781749999999!4m4!1s0x33bd8172dd734137%3A0xb50c6e9769515c6b!3m2!1d14.2811316!2d120.8682973!5e1!3m2!1sen!2sph!4v1763992431943!5m2!1sen!2sph" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <div id="route-indang-dasma" class="route-iframe">
+                <iframe title="Indang to Dasma route map" src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d94666.13606252104!2d120.87187671916824!3d14.240830397979185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x33bd83f2fd0718eb%3A0x787d78d69e68ed8f!2sIndang%20Transport%20Terminal%2C%20Indang%2C%20Cavite!3m2!1d14.196784!2d120.87781749999999!4m5!1s0x3397d599d0ed7fa3%3A0x32966243d5a35741!2sPala%20Pala%20Transportation%20Terminal%208X23%2BHJC%20Aguinaldo%20Hwy%20Dasmari%C3%B1as%2C%20Cavite!3m2!1d14.3014304!2d120.95403189999999!5e1!3m2!1sen!2sph!4v1763991459626!5m2!1sen!2sph" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <div id="route-indang-olivarez" class="route-iframe" style="display:none;">
+                <iframe title="Indang to Olivarez route map" src="https://www.google.com/maps/embed?pb=!1m34!1m12!1m3!1d94704.85047397172!2d120.87815256897002!3d14.148211603155438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m19!3e0!4m5!1s0x33bd83f2fd0718eb%3A0x787d78d69e68ed8f!2s5VWH%2BP48%20Indang%20Transport%20Terminal%2C%20Indang%2C%20Cavite!3m2!1d14.196784!2d120.87781749999999!4m5!1s0x33bd77c13f875c1f%3A0x49c70d4d5fc34577!2sMendez%20Crossing%20West%2C%20Tagaytay%20City%2C%20Cavite!3m2!1d14.099706999999999!2d120.9144783!4m5!1s0x33bd79c447d03967%3A0xe6fbd84f35a29877!2sOlivarez%20Plaza%20Tagaytay%2C%20Aguinaldo%20Highway%2C%20Tagaytay%20City%2C%20Cavite!3m2!1d14.1173074!2d120.96189439999999!5e1!3m2!1sen!2sph!4v1764301193631!5m2!1sen!2sph" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+            <div id="no-route-message" class="no-route-message">No route selected.</div>
+            <div class="route-cta">
+              <p class="muted-text">Need a driver for this route?</p>
+              <a href="directory.html" class="cta-button">View Drivers</a>
+              <a href="driver.html" class="cta-button secondary">Driver Portal</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <a href="../index.html" class="footer-logo-link">
+              <img src="../img/footer/fullw.png" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+            </a>
+            <div class="footer-info">
+              <p class="footer-text">&copy; 2026 spot.ph. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="../scripts/main.js?v=20260531v"></script>
+    <script src="../scripts/spot-data.js?v=20260531j"></script>
+    <script src="../scripts/spot-knowledge.js?v=20260531m"></script>
+    <script src="../scripts/routes.js"></script>
+    <script src="../scripts/assistant-widget.js?v=20260531ab"></script>
+    <button class="scroll-top-btn" aria-label="Scroll to top" role="button" tabindex="0">
+      <img src="../img/icons/arrowup.png" alt="Scroll to top" class="scroll-top-icon" loading="lazy" decoding="async" />
+    </button>
+  </body>
+</html>

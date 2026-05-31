@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verified Driver Directory | spot.ph</title>
+    <link rel="stylesheet" href="../styles/main.css?v=20260531ae" />
+    <link rel="icon" href="../img/logo(trans)/6.png" type="image/png">
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+  </head>
+  
+  <body class="page-loading">
+    <div class="page-skeleton" aria-hidden="true">
+      <div class="page-skeleton__header"></div>
+      <div class="page-skeleton__body">
+        <span class="page-skeleton__line page-skeleton__line--eyebrow"></span>
+        <span class="page-skeleton__line page-skeleton__line--title"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy page-skeleton__line--short"></span>
+        <div class="page-skeleton__grid">
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+        </div>
+      </div>
+    </div>
+    <div data-layer="main-container" class="desktop">
+      <header data-layer="header" class="header">
+        <a href="../index.html" data-layer="logo" class="logo">spot.ph</a>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav id="site-nav" data-layer="navigation" class="nav" role="navigation" aria-hidden="true">
+          <a href="dashboard.html" class="nav-item">Dashboard</a>
+          <a href="fare.html" class="nav-item">Fare</a>
+          <a href="routes.html" class="nav-item">Routes</a>
+          <a href="directory.html" class="nav-item">Drivers</a>
+          <a href="driver.html" class="nav-item">Portal</a>
+          <a href="gas.html" class="nav-item">Gas</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+      </header>
+      
+      <main class="main-content main-content--atmosphere">
+        <div class="page-atmosphere" aria-hidden="true">
+          <span class="page-atmosphere__grid"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--one"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--two"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--three"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--left"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--right"></span>
+        </div>
+
+        <section id="drivers" class="section drivers-section">
+          <div class="section-heading section-heading--with-visual">
+            <div class="section-heading__visual" aria-hidden="true">
+              <dotlottie-wc class="lottie-animation" src="https://lottie.host/0fe696b4-a8f8-426d-b3de-22b00691d470/Dk4Cjv9PCX.lottie" data-lottie-src="https://lottie.host/0fe696b4-a8f8-426d-b3de-22b00691d470/Dk4Cjv9PCX.lottie" autoplay loop></dotlottie-wc>
+            </div>
+            <div class="section-heading__content">
+              <h2 class="section-title">Verified Driver Directory</h2>
+              <p class="page-intro">Find verified drivers, routes, schedules, and contact numbers.</p>
+            </div>
+          </div>
+
+          <div class="center-text mb-16">
+            <label for="driver-vehicle-filter" class="muted-text label-inline-right label-strong">Filter by vehicle:</label>
+            <select id="driver-vehicle-filter" class="route-select">
+              <option value="all">All Vehicles</option>
+              <option value="jeepney">Jeepney</option>
+              <option value="bus">Bus</option>
+              <option value="tricycle">Tricycle</option>
+            </select>
+          </div>
+          <div class="table-container">
+            <table class="drivers-table">
+              <thead>
+                <tr>
+                  <th>Identifier</th>
+                  <th>Name</th>
+                  <th>Vehicle Type</th>
+                  <th>Plate Number</th>
+                  <th>Route</th>
+                  <th class="contact-col">Contact</th>
+                  <th>Schedule</th>
+                  <th>Last Trip Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-vehicle="jeepney">
+                  <td><div class="driver-photo">JD</div></td>
+                  <td>Juan Dela Cruz</td>
+                  <td>Jeepney</td>
+                  <td>ABC-1234</td>
+                  <td>Trece Route</td>
+                  <td class="contact"><span class="contact-icon" aria-hidden="true">&#9742;</span><a href="tel:09123456789">0912-345-6789</a></td>
+                  <td>5:00 AM - 9:00 PM</td>
+                  <td>8:45 PM</td>
+                </tr>
+                <tr data-vehicle="jeepney">
+                  <td><div class="driver-photo">MS</div></td>
+                  <td>Maria Santos</td>
+                  <td>Jeepney</td>
+                  <td>XYZ-5678</td>
+                  <td>Trece Route</td>
+                  <td class="contact"><span class="contact-icon" aria-hidden="true">&#9742;</span><a href="tel:09178901234">0917-890-1234</a></td>
+                  <td>5:00 AM - 9:00 PM</td>
+                  <td>8:30 PM</td>
+                </tr>
+                <tr data-vehicle="jeepney">
+                  <td><div class="driver-photo">PG</div></td>
+                  <td>Pedro Garcia</td>
+                  <td>Jeepney</td>
+                  <td>DEF-9012</td>
+                  <td>Alfonso Route</td>
+                  <td class="contact"><span class="contact-icon" aria-hidden="true">&#9742;</span><a href="tel:09182345678">0918-234-5678</a></td>
+                  <td>5:30 AM - 8:30 PM</td>
+                  <td>8:15 PM</td>
+                </tr>
+                <tr data-vehicle="jeepney">
+                  <td><div class="driver-photo">AR</div></td>
+                  <td>Ana Reyes</td>
+                  <td>Jeepney</td>
+                  <td>GHI-3456</td>
+                  <td>Dasma Route</td>
+                  <td class="contact"><span class="contact-icon" aria-hidden="true">&#9742;</span><a href="tel:09194567890">0919-456-7890</a></td>
+                  <td>6:00 AM - 8:00 PM</td>
+                  <td>7:50 PM</td>
+                </tr>
+                <tr data-vehicle="jeepney">
+                  <td><div class="driver-photo">CM</div></td>
+                  <td>Carlos Mendoza</td>
+                  <td>Jeepney</td>
+                  <td>JKL-7890</td>
+                  <td>Trece Route</td>
+                  <td class="contact"><span class="contact-icon" aria-hidden="true">&#9742;</span><a href="tel:09206789012">0920-678-9012</a></td>
+                  <td>5:00 AM - 9:00 PM</td>
+                  <td>8:55 PM</td>
+                </tr>
+                <tr data-vehicle="bus">
+                  <td><div class="driver-photo">RB</div></td>
+                  <td>Ramon Bautista</td>
+                  <td>Bus</td>
+                  <td>BUS-1122</td>
+                  <td>Dasma Route</td>
+                  <td class="contact"><span class="contact-icon" aria-hidden="true">&#9742;</span><a href="tel:09211223344">0921-122-3344</a></td>
+                  <td>6:00 AM - 10:00 PM</td>
+                  <td>9:40 PM</td>
+                </tr>
+                <tr data-vehicle="tricycle">
+                  <td><div class="driver-photo">LM</div></td>
+                  <td>Luisa Mercado</td>
+                  <td>Tricycle</td>
+                  <td>TRI-3344</td>
+                  <td>Alfonso Route</td>
+                  <td class="contact"><span class="contact-icon" aria-hidden="true">&#9742;</span><a href="tel:09223344556">0922-334-4556</a></td>
+                  <td>5:00 AM - 8:00 PM</td>
+                  <td>7:30 PM</td>
+                </tr>
+                <tr data-vehicle="jeepney">
+                  <td><div class="driver-photo">JC</div></td>
+                  <td>Jose Castillo</td>
+                  <td>Jeepney</td>
+                  <td>MNO-4455</td>
+                  <td>Olivarez Route</td>
+                  <td class="contact"><span class="contact-icon" aria-hidden="true">&#9742;</span><a href="tel:09221234567">0922-123-4567</a></td>
+                  <td>6:00 AM - 9:00 PM</td>
+                  <td>8:10 PM</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="route-cta">
+            <p>Need the fare too?</p>
+            <a href="fare.html" class="cta-button">Fare Calculator</a>
+            <a href="driver.html" class="cta-button secondary">Driver Portal</a>
+            <a href="about.html" class="cta-button secondary">About</a>
+          </div>
+        </section>
+      </main>
+      
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <a href="../index.html" class="footer-logo-link">
+              <img src="../img/footer/fullw.png" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+            </a>
+            <div class="footer-info">
+              <p class="footer-text">&copy; 2026 spot.ph. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div id="driver-modal" class="driver-modal" hidden aria-hidden="true">
+      <div class="driver-modal__panel" role="dialog" aria-modal="true" aria-labelledby="driver-modal-title">
+        <div class="driver-modal__header">
+          <div class="driver-modal__hero">
+            <div class="driver-modal__avatar" data-driver-modal-avatar>DR</div>
+            <div class="driver-modal__copy">
+              <span class="driver-modal__eyebrow">Verified Driver Record</span>
+              <h3 id="driver-modal-title" class="driver-modal__title" data-driver-modal-title>Driver Name</h3>
+              <p class="driver-modal__subtitle" data-driver-modal-subtitle>Vehicle assignment</p>
+            </div>
+          </div>
+          <button type="button" class="driver-modal__close" data-driver-modal-close aria-label="Close driver details">&times;</button>
+        </div>
+        <div class="driver-modal__body">
+          <p class="driver-modal__summary" data-driver-modal-summary></p>
+          <div class="driver-modal__grid">
+            <div class="driver-modal__field">
+              <span>Vehicle Type</span>
+              <strong data-driver-modal-vehicle></strong>
+            </div>
+            <div class="driver-modal__field">
+              <span>Plate Number</span>
+              <strong data-driver-modal-plate></strong>
+            </div>
+            <div class="driver-modal__field">
+              <span>Route</span>
+              <strong data-driver-modal-route></strong>
+            </div>
+            <div class="driver-modal__field">
+              <span>Contact</span>
+              <strong data-driver-modal-contact></strong>
+            </div>
+            <div class="driver-modal__field">
+              <span>Schedule</span>
+              <strong data-driver-modal-schedule></strong>
+            </div>
+            <div class="driver-modal__field">
+              <span>Last Trip Time</span>
+              <strong data-driver-modal-last-trip></strong>
+            </div>
+          </div>
+          <div class="driver-modal__actions">
+            <a href="#" class="cta-button" data-driver-modal-call>Call Driver</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../scripts/main.js?v=20260531v"></script>
+    <script src="../scripts/spot-data.js?v=20260531j"></script>
+    <script src="../scripts/spot-knowledge.js?v=20260531m"></script>
+    <script src="../scripts/directory.js?v=20260531b"></script>
+    <script src="../scripts/assistant-widget.js?v=20260531ab"></script>
+
+    <button class="scroll-top-btn" aria-label="Scroll to top" role="button" tabindex="0">
+      <img src="../img/icons/arrowup.png" alt="Scroll to top" class="scroll-top-icon" loading="lazy" decoding="async" />
+    </button>
+  </body>
+</html>

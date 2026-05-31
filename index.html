@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spot.ph | Public Transport Information Platform</title>
+    <meta name="description" content="spot.ph helps people check routes, fares, drivers, and fuel prices in one place." />
+    <link rel="stylesheet" href="styles/main.css?v=20260531ae" />
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+    <link rel="icon" href="img/logo(trans)/6.png" type="image/png">
+  </head>
+  
+  <body class="page-loading">
+    <div class="page-skeleton" aria-hidden="true">
+      <div class="page-skeleton__header"></div>
+      <div class="page-skeleton__body">
+        <span class="page-skeleton__line page-skeleton__line--eyebrow"></span>
+        <span class="page-skeleton__line page-skeleton__line--title"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy page-skeleton__line--short"></span>
+        <div class="page-skeleton__grid">
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+        </div>
+      </div>
+    </div>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <div data-layer="main-container" class="desktop">
+      <header data-layer="header" class="header" role="banner">
+        <a href="index.html" data-layer="logo" class="logo">spot.ph</a>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav id="site-nav" data-layer="navigation" class="nav" role="navigation" aria-hidden="true">
+          <a href="pages/dashboard.html" class="nav-item">Dashboard</a>
+          <a href="pages/fare.html" class="nav-item">Fare</a>
+          <a href="pages/routes.html" class="nav-item">Routes</a>
+          <a href="pages/directory.html" class="nav-item">Drivers</a>
+          <a href="pages/driver.html" class="nav-item">Portal</a>
+          <a href="pages/gas.html" class="nav-item">Gas</a>
+          <a href="pages/about.html" class="nav-item">About</a>
+          <a href="pages/contact.html" class="nav-item">Contact</a>
+        </nav>
+      </header>
+      
+      <main id="main-content" class="main-content main-content--atmosphere" role="main">
+        <div class="page-atmosphere" aria-hidden="true">
+          <span class="page-atmosphere__grid"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--one"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--two"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--three"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--left"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--right"></span>
+        </div>
+        
+        <section id="home" class="hero-section hero" aria-label="Home">
+          <div class="hero__inner">
+            <div class="hero__left">
+              <div class="rating-badge" role="status" aria-label="Routes, fares, drivers, and fuel prices in one place">Routes, fares, drivers, and fuel prices</div>
+              <h1 class="hero__title">Local Transport, Made Easier</h1>
+              <p class="hero__subtitle">Check routes, fares, drivers, and live fuel prices in one place.</p>
+              <div class="hero__cta">
+                <a href="pages/dashboard.html" class="cta-button" aria-label="Open dashboard">View Dashboard</a>
+                <a href="pages/fare.html" class="cta-button secondary" aria-label="Open fare calculator">Calculate Fare</a>
+              </div>
+              <div class="hero-highlights" aria-label="Key service highlights">
+                <span>Live route overview</span>
+                <span>Published fare guide</span>
+                <span>Verified driver records</span>
+              </div>
+            </div>
+            <div class="feature-grid" role="list">
+              <a role="listitem" href="pages/dashboard.html" class="feature-card" style="--i:0" aria-label="Live Transport Dashboard">
+                <div class="feature-icon"><img src="img/icons/dashboard.png" alt="Live Transport Dashboard icon" class="feature-icon-img" loading="lazy"></div>
+                <h3>Live Transport Dashboard</h3>
+                <p>See route status and vehicle activity on the map.</p>
+              </a>
+              <a role="listitem" href="pages/fare.html" class="feature-card" style="--i:1" aria-label="Fare Calculator">
+                <div class="feature-icon"><img src="img/icons/calculator.png" alt="Fare Calculator icon" class="feature-icon-img" loading="lazy"></div>
+                <h3>Fare Calculator</h3>
+                <p>Check estimated fares in a few taps.</p>
+              </a>
+              <a role="listitem" href="pages/routes.html" class="feature-card" style="--i:2" aria-label="Route Quick View">
+                <div class="feature-icon"><img src="img/icons/path.png" alt="Route Quick View icon" class="feature-icon-img" loading="lazy"></div>
+                <h3>Route Quick View</h3>
+                <p>Open route maps for the main trips.</p>
+              </a>
+              <a role="listitem" href="pages/directory.html" class="feature-card" style="--i:3" aria-label="Driver Directory">
+                <div class="feature-icon"><img src="img/icons/user.png" alt="Driver Directory icon" class="feature-icon-img" loading="lazy"></div>
+                <h3>Driver Directory</h3>
+                <p>View verified driver details and contact numbers.</p>
+              </a>
+              <a role="listitem" href="pages/driver.html" class="feature-card" style="--i:4" aria-label="Driver Portal">
+                <div class="feature-icon"><img src="img/icons/user.png" alt="Driver Portal icon" class="feature-icon-img" loading="lazy"></div>
+                <h3>Driver Portal</h3>
+                <p>Drivers can update their profile, vehicle, and GPS.</p>
+              </a>
+              <a role="listitem" href="pages/gas.html" class="feature-card" style="--i:5" aria-label="Gas Price Watch">
+                <div class="feature-icon"><img src="img/icons/calculator.png" alt="Gas Price Watch icon" class="feature-icon-img" loading="lazy"></div>
+                <h3>Gas Price Watch</h3>
+                <p>Check live fuel prices and recent changes.</p>
+              </a>
+              <a role="listitem" href="pages/about.html" class="feature-card" style="--i:6" aria-label="About">
+                <div class="feature-icon"><img src="img/icons/idea.png" alt="About icon" class="feature-icon-img" loading="lazy"></div>
+                <h3>About</h3>
+                <p>A quick look at what spot.ph does.</p>
+              </a>
+              <a role="listitem" href="pages/contact.html" class="feature-card" style="--i:7" aria-label="Contact">
+                <div class="feature-icon"><img src="img/icons/contact.png" alt="Contact icon" class="feature-icon-img" loading="lazy"></div>
+                <h3>Contact</h3>
+                <p>Send a message or share feedback.</p>
+              </a>
+            </div>
+          </div>
+          <div class="hero-background" aria-hidden="true">
+            
+            <dotlottie-wc id="hero-bg-lottie" class="hero-bg-lottie" src="https://lottie.host/e76d5150-b1af-4bb7-89cd-0b4f99ed89a9/BexEiY1vZF.lottie" data-lottie-src="https://lottie.host/e76d5150-b1af-4bb7-89cd-0b4f99ed89a9/BexEiY1vZF.lottie" autoplay loop aria-hidden="true"></dotlottie-wc>
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+            <div class="blob blob-5"></div>
+          </div>
+        </section>
+
+        
+        <section class="section map-section">
+          <h2 class="section-title">Map Preview</h2>
+          <div id="map" aria-label="Map showing location"></div>
+        </section>
+      </main>
+      
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <a href="index.html" class="footer-logo-link">
+              <img src="img/footer/fullw.png" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+            </a>
+            <div class="footer-info">
+              <p class="footer-text">&copy; 2026 spot.ph. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <button class="scroll-top-btn" aria-label="Scroll to top" role="button" tabindex="0">
+        <img src="img/icons/arrowup.png" alt="Scroll to top" class="scroll-top-icon" loading="lazy" decoding="async" />
+      </button>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="scripts/main.js?v=20260531v"></script>
+    <script src="scripts/spot-data.js?v=20260531j"></script>
+    <script src="scripts/spot-knowledge.js?v=20260531m"></script>
+    <script src="scripts/assistant-widget.js?v=20260531ab"></script>
+    <script>
+
+      (function initHomeMap(){
+        const lat = 14.1959585;
+        const lng = 120.8785591;
+        const mapEl = document.getElementById('map');
+
+        if (!mapEl) return;
+
+        function setup() {
+          if (!mapEl || typeof L === 'undefined') return;
+          if (mapEl.dataset.mapReady === 'true') return;
+
+          mapEl.dataset.mapReady = 'true';
+
+          if (!mapEl.style.height) mapEl.style.height = '400px';
+
+          const map = L.map('map').setView([lat, lng], 13);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+          }).addTo(map);
+
+          const marker = L.marker([lat, lng]).addTo(map);
+          marker.bindPopup('You are here').openPopup();
+
+          try { map.invalidateSize(); } catch (e) {  }
+        }
+
+        if (typeof window.spotActivateWhenVisible === 'function') {
+          window.spotActivateWhenVisible(mapEl, setup, { rootMargin: '240px 0px' });
+        } else {
+          setTimeout(setup, 50);
+        }
+      })();
+    </script>
+  </body>
+</html>

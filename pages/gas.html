@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Gas Prices | spot.ph</title>
+    <link rel="stylesheet" href="../styles/main.css?v=20260531ae" />
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+    <link rel="icon" href="../img/logo(trans)/6.png" type="image/png">
+  </head>
+  <body class="page-loading">
+    <div class="page-skeleton" aria-hidden="true">
+      <div class="page-skeleton__header"></div>
+      <div class="page-skeleton__body">
+        <span class="page-skeleton__line page-skeleton__line--eyebrow"></span>
+        <span class="page-skeleton__line page-skeleton__line--title"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy page-skeleton__line--short"></span>
+        <div class="page-skeleton__grid">
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+        </div>
+      </div>
+    </div>
+    <div data-layer="main-container" class="desktop">
+      <header data-layer="header" class="header">
+        <a href="../index.html" data-layer="logo" class="logo">spot.ph</a>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav id="site-nav" data-layer="navigation" class="nav" role="navigation" aria-hidden="true">
+          <a href="dashboard.html" class="nav-item">Dashboard</a>
+          <a href="fare.html" class="nav-item">Fare</a>
+          <a href="routes.html" class="nav-item">Routes</a>
+          <a href="directory.html" class="nav-item">Drivers</a>
+          <a href="driver.html" class="nav-item">Portal</a>
+          <a href="gas.html" class="nav-item">Gas</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+      </header>
+
+      <main class="main-content main-content--atmosphere">
+        <div class="page-atmosphere" aria-hidden="true">
+          <span class="page-atmosphere__grid"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--one"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--two"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--three"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--left"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--right"></span>
+        </div>
+        <section class="section fuel-page-section">
+          <div class="section-heading section-heading--with-visual">
+            <div class="section-heading__visual section-heading__visual--fuel" aria-hidden="true">
+              <dotlottie-wc class="lottie-animation" src="https://lottie.host/42d5bf8b-34ba-4873-ac29-7d2ede7f8bd7/avEMnsVDs8.lottie" data-lottie-src="https://lottie.host/42d5bf8b-34ba-4873-ac29-7d2ede7f8bd7/avEMnsVDs8.lottie" autoplay loop></dotlottie-wc>
+            </div>
+            <div class="section-heading__content">
+              <h2 class="section-title">Live Gas Prices</h2>
+            </div>
+          </div>
+
+          <div id="fuel-intelligence-section" class="fuel-intelligence-section fuel-intelligence-section--page">
+            <div class="fuel-section-heading">
+              <div>
+                <p class="ai-description">Pick an area and fuel type to compare nearby stations.</p>
+              </div>
+              <p id="fuel-source-note" class="fuel-source-note">Loading the live source details...</p>
+            </div>
+
+            <div class="fuel-toolbar">
+              <div class="form-group">
+                <label for="fuel-area-select">Lookup Area</label>
+                <select id="fuel-area-select" class="route-select">
+                  <option value="all">Loading areas...</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="fuel-type-select">Fuel Type</label>
+                <select id="fuel-type-select" class="route-select">
+                  <option value="diesel">Diesel</option>
+                  <option value="unleaded">Gasoline 91</option>
+                </select>
+              </div>
+              <div class="fuel-toolbar__actions">
+                <button id="fuel-nearby-btn" class="map-btn" type="button">Use My Location</button>
+                <button id="fuel-refresh-btn" class="map-btn" type="button">Refresh Live Feed</button>
+              </div>
+            </div>
+
+            <p id="fuel-status-message" class="fuel-status-message" role="status" aria-live="polite">Loading live Philippine fuel data...</p>
+
+            <div id="fuel-live-grid" class="fuel-kpi-grid"></div>
+
+            <div class="fuel-market-layout">
+              <article class="fuel-chart-card">
+                <div class="fuel-chart-card__head">
+                  <div>
+                    <h4>7-day and 30-day market movement</h4>
+                  </div>
+                  <p id="fuel-chart-caption" class="fuel-chart-caption">Chart will appear after the live source loads.</p>
+                </div>
+                <svg id="fuel-chart-svg" class="fuel-chart" role="img" aria-label="Fuel price comparison chart"></svg>
+                <div id="fuel-chart-legend" class="fuel-chart-legend"></div>
+              </article>
+
+              <div class="fuel-trend-panel">
+                <div class="fuel-trend-panel__head">
+                  <div>
+                    <h4 id="fuel-local-heading">Live local station prices</h4>
+                  </div>
+                </div>
+                <div id="fuel-trend-grid" class="fuel-trend-grid"></div>
+              </div>
+            </div>
+
+            <div class="fuel-station-shell">
+              <div class="fuel-station-shell__head">
+                <div>
+                  <h4>Tracked local stations</h4>
+                </div>
+                <p>Sorted by price, or by distance after location is enabled.</p>
+              </div>
+              <div id="fuel-station-list" class="fuel-station-list"></div>
+            </div>
+          </div>
+
+          <div class="center-text universal-cta">
+            <a href="dashboard.html" class="cta-button">Back to Dashboard</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <a href="../index.html" class="footer-logo-link">
+              <img src="../img/footer/fullw.png" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+            </a>
+            <div class="footer-info">
+              <p class="footer-text">&copy; 2026 spot.ph. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="../scripts/main.js?v=20260531v"></script>
+    <script src="../scripts/spot-data.js?v=20260531j"></script>
+    <script src="../scripts/spot-knowledge.js?v=20260531m"></script>
+    <script src="../scripts/fuel-dashboard.js?v=20260531c"></script>
+    <script src="../scripts/assistant-widget.js?v=20260531ab"></script>
+
+    <button class="scroll-top-btn" aria-label="Scroll to top" role="button" tabindex="0">
+      <img src="../img/icons/arrowup.png" alt="Scroll to top" class="scroll-top-icon" loading="lazy" decoding="async" />
+    </button>
+  </body>
+</html>

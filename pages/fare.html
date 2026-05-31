@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Public Fare Calculator | spot.ph</title>
+    <link rel="stylesheet" href="../styles/main.css?v=20260531ae" />
+    <link rel="icon" href="../img/logo(trans)/6.png" type="image/png">
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+  </head>
+  
+  <body class="page-loading">
+    <div class="page-skeleton" aria-hidden="true">
+      <div class="page-skeleton__header"></div>
+      <div class="page-skeleton__body">
+        <span class="page-skeleton__line page-skeleton__line--eyebrow"></span>
+        <span class="page-skeleton__line page-skeleton__line--title"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy page-skeleton__line--short"></span>
+        <div class="page-skeleton__grid">
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+        </div>
+      </div>
+    </div>
+    <div data-layer="main-container" class="desktop">
+      <header data-layer="header" class="header">
+        <a href="../index.html" data-layer="logo" class="logo">spot.ph</a>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav id="site-nav" data-layer="navigation" class="nav" role="navigation" aria-hidden="true">
+          <a href="dashboard.html" class="nav-item">Dashboard</a>
+          <a href="fare.html" class="nav-item">Fare</a>
+          <a href="routes.html" class="nav-item">Routes</a>
+          <a href="directory.html" class="nav-item">Drivers</a>
+          <a href="driver.html" class="nav-item">Portal</a>
+          <a href="gas.html" class="nav-item">Gas</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+      </header>
+      
+      <main class="main-content main-content--atmosphere">
+        <div class="page-atmosphere" aria-hidden="true">
+          <span class="page-atmosphere__grid"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--one"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--two"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--three"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--left"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--right"></span>
+        </div>
+
+        <section id="calculator" class="section calculator-section">
+          <div class="section-heading section-heading--with-visual">
+            <div class="section-heading__visual" aria-hidden="true">
+              <dotlottie-wc class="lottie-animation" src="https://lottie.host/42d5bf8b-34ba-4873-ac29-7d2ede7f8bd7/avEMnsVDs8.lottie" data-lottie-src="https://lottie.host/42d5bf8b-34ba-4873-ac29-7d2ede7f8bd7/avEMnsVDs8.lottie" autoplay loop></dotlottie-wc>
+            </div>
+            <div class="section-heading__content">
+              <h2 class="section-title">Public Fare Calculator</h2>
+              <p class="page-intro">Estimate fares by route, vehicle, and passenger type.</p>
+            </div>
+          </div>
+          
+          <div class="calculator-container">
+            <form id="fare-form" class="fare-form">
+              <div class="form-group">
+                <label for="start-location">Start Location:</label>
+                <select id="start-location" class="form-input" required>
+                  <option value="">Select start location</option>
+                  <option value="indang">Indang</option>
+                  <option value="trece">Trece</option>
+                  <option value="alfonso">Alfonso</option>
+                  <option value="dasma">Dasma</option>
+                  <option value="olivarez">Olivarez</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="destination">Destination:</label>
+                <select id="destination" class="form-input" required>
+                  <option value="">Select destination</option>
+                  <option value="indang">Indang</option>
+                  <option value="trece">Trece</option>
+                  <option value="alfonso">Alfonso</option>
+                  <option value="dasma">Dasma</option>
+                  <option value="olivarez">Olivarez</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="vehicle-type">Vehicle Type:</label>
+                <select id="vehicle-type" class="form-input" required>
+                  <option value="jeepney">Traditional Jeepney (PUJ)</option>
+                  <option value="bus">Provincial Aircon Bus (PUB)</option>
+                  <option value="tricycle">Tricycle</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="passenger-type">Passenger Type:</label>
+                <select id="passenger-type" class="form-input" required>
+                  <option value="regular">Regular</option>
+                  <option value="student">Student</option>
+                  <option value="elderly">Elderly</option>
+                  <option value="disabled">Disabled</option>
+                </select>
+              </div>
+              <button type="submit" class="calculate-btn">Calculate Fare</button>
+            </form>
+            <div id="fare-output" class="fare-output">
+              <p class="fare-result">Estimated fare will appear here</p>
+            </div>
+            
+            <div class="route-quickview center-text">
+              <h3 class="section-title">Route Quick View</h3>
+              <p class="muted-text mb-16">Need the map too?</p>
+              <div>
+                <a href="routes.html" class="cta-button">Open Route Maps</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <a href="../index.html" class="footer-logo-link">
+              <img src="../img/footer/fullw.png" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+            </a>
+            <div class="footer-info">
+              <p class="footer-text">&copy; 2026 spot.ph. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="../scripts/main.js?v=20260531v"></script>
+    <script src="../scripts/spot-data.js?v=20260531j"></script>
+    <script src="../scripts/spot-knowledge.js?v=20260531m"></script>
+    <script src="../scripts/fare.js"></script>
+    <script src="../scripts/assistant-widget.js?v=20260531ab"></script>
+
+    <button class="scroll-top-btn" aria-label="Scroll to top" role="button" tabindex="0">
+      <img src="../img/icons/arrowup.png" alt="Scroll to top" class="scroll-top-icon" loading="lazy" decoding="async" />
+    </button>
+  </body>
+</html>

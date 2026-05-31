@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transport Operations Dashboard | spot.ph</title>
+    <link rel="stylesheet" href="../styles/main.css?v=20260531ae" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="icon" href="../img/logo(trans)/6.png" type="image/png">
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+  </head>
+  <body class="page-loading">
+    <div class="page-skeleton" aria-hidden="true">
+      <div class="page-skeleton__header"></div>
+      <div class="page-skeleton__body">
+        <span class="page-skeleton__line page-skeleton__line--eyebrow"></span>
+        <span class="page-skeleton__line page-skeleton__line--title"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy page-skeleton__line--short"></span>
+        <div class="page-skeleton__grid">
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+        </div>
+      </div>
+    </div>
+    <div data-layer="main-container" class="desktop">
+      <header data-layer="header" class="header">
+        <a href="../index.html" data-layer="logo" class="logo">spot.ph</a>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav id="site-nav" data-layer="navigation" class="nav" role="navigation" aria-hidden="true">
+          <a href="dashboard.html" class="nav-item">Dashboard</a>
+          <a href="fare.html" class="nav-item">Fare</a>
+          <a href="routes.html" class="nav-item">Routes</a>
+          <a href="directory.html" class="nav-item">Drivers</a>
+          <a href="driver.html" class="nav-item">Portal</a>
+          <a href="gas.html" class="nav-item">Gas</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+      </header>
+
+      <main class="main-content main-content--atmosphere">
+        <div class="page-atmosphere" aria-hidden="true">
+          <span class="page-atmosphere__grid"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--one"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--two"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--three"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--left"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--right"></span>
+        </div>
+        <section id="dashboard" class="section dashboard-section">
+          <div class="section-heading section-heading--with-visual">
+            <div class="section-heading__visual" aria-hidden="true">
+              <dotlottie-wc class="lottie-animation" src="https://lottie.host/2b9523e9-5156-44cb-a726-a7b6a5c530f3/LQa8vAJxbW.lottie" data-lottie-src="https://lottie.host/2b9523e9-5156-44cb-a726-a7b6a5c530f3/LQa8vAJxbW.lottie" autoplay loop></dotlottie-wc>
+            </div>
+            <div class="section-heading__content">
+              <h2 class="section-title">Transport Operations Dashboard</h2>
+              <p class="page-intro">See route status, vehicles, and terminal activity in one place.</p>
+            </div>
+          </div>
+
+          <div class="status-legend">
+            <h3>Status Legend</h3>
+            <div class="legend-items">
+              <div class="legend-item">
+                <span class="status-indicator available" aria-hidden="true"></span>
+                <span>Available</span>
+              </div>
+              <div class="legend-item">
+                <span class="status-indicator limited" aria-hidden="true"></span>
+                <span>Limited</span>
+              </div>
+              <div class="legend-item">
+                <span class="status-indicator unavailable" aria-hidden="true"></span>
+                <span>Unavailable</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="route-filter">
+            <label for="route-select">Filter by Route:</label>
+            <select id="route-select" class="route-select">
+              <option value="all">All Routes</option>
+              <option value="dasma">Dasma Route</option>
+              <option value="trece">Trece Route</option>
+              <option value="alfonso">Alfonso Route</option>
+              <option value="olivarez">Olivarez Route</option>
+            </select>
+            <br>
+            <br>
+            <label for="vehicle-select" class="label-inline-left">Vehicle Type:</label>
+            <select id="vehicle-select" class="route-select">
+              <option value="all">All Vehicles</option>
+              <option value="jeepney">Jeepney</option>
+              <option value="bus">Bus</option>
+              <option value="tricycle">Tricycle</option>
+            </select>
+          </div>
+
+          <div class="available-vehicles">
+            <h3 id="fleet-summary-title">Available Vehicles</h3>
+
+            <div class="fleet-summary-shell" aria-labelledby="fleet-summary-title">
+              <div class="fleet-summary-shell__head">
+                <div class="fleet-summary-shell__copy-wrap">
+                  <p class="fleet-summary-shell__eyebrow">Fleet Overview</p>
+                  <p id="vehicle-summary-caption" class="fleet-summary-shell__copy">Live totals for your current filters.</p>
+                </div>
+              </div>
+              <div id="vehicle-summary" class="fleet-summary-grid" role="list" aria-live="polite"></div>
+            </div>
+
+            <div id="vehicles-list" class="vehicles-list">
+              <div class="vehicle-card" data-route="dasma" data-vehicles="jeepney,tricycle">
+                <div class="vehicle-status available" aria-hidden="true"></div>
+                <div class="vehicle-info">
+                  <h4>Dasma Route</h4>
+                  <p>3 Vehicles (Jeepney & Tricycle)</p>
+                </div>
+              </div>
+              <div class="vehicle-card" data-route="trece" data-vehicles="jeepney,bus">
+                <div class="vehicle-status available" aria-hidden="true"></div>
+                <div class="vehicle-info">
+                  <h4>Trece Route</h4>
+                  <p>2 Jeepneys Available</p>
+                </div>
+              </div>
+              <div class="vehicle-card" data-route="alfonso" data-vehicles="jeepney">
+                <div class="vehicle-status limited" aria-hidden="true"></div>
+                <div class="vehicle-info">
+                  <h4>Alfonso Route</h4>
+                  <p>1 Jeepney Remaining</p>
+                </div>
+              </div>
+              <div class="vehicle-card" data-route="olivarez" data-vehicles="jeepney,bus">
+                <div class="vehicle-status available" aria-hidden="true"></div>
+                <div class="vehicle-info">
+                  <h4>Olivarez Route</h4>
+                  <p>2 Vehicles (Jeepney & Bus)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="ai-title">Transit Map & Live Status</h3>
+          <p class="ai-description">View the map and filter by route or vehicle.</p>
+
+          <div class="ai-cards">
+            <div class="ai-card">
+              <h4>Live Map</h4>
+              <div class="ai-prediction" id="vehicles-after-5pm">
+                <div class="map-controls">
+                  <button id="show-location-btn" class="map-btn" type="button">Show My Location</button>
+                </div>
+                <div id="map" aria-label="Map showing location"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timetables">
+            <h3>Timetables</h3>
+            <div class="timetable-container">
+              <div class="timetable-card" data-route="dasma">
+                <h4>Dasma Route</h4>
+                <p><strong>First Trip:</strong> 5:15 AM</p>
+                <p><strong>Last Trip:</strong> 8:45 PM</p>
+                <p><strong>Frequency:</strong> Every 18 minutes</p>
+              </div>
+              <div class="timetable-card" data-route="trece">
+                <h4>Trece Route</h4>
+                <p><strong>First Trip:</strong> 5:00 AM</p>
+                <p><strong>Last Trip:</strong> 9:00 PM</p>
+                <p><strong>Frequency:</strong> Every 15 minutes</p>
+              </div>
+              <div class="timetable-card" data-route="alfonso">
+                <h4>Alfonso Route</h4>
+                <p><strong>First Trip:</strong> 5:30 AM</p>
+                <p><strong>Last Trip:</strong> 8:30 PM</p>
+                <p><strong>Frequency:</strong> Every 20 minutes</p>
+              </div>
+              <div class="timetable-card" data-route="olivarez">
+                <h4>Olivarez Route</h4>
+                <p><strong>First Trip:</strong> 5:20 AM</p>
+                <p><strong>Last Trip:</strong> 8:30 PM</p>
+                <p><strong>Frequency:</strong> Every 18 minutes</p>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div class="center-text universal-cta">
+            <a href="fare.html" class="cta-button">Fare Calculator</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <a href="../index.html" class="footer-logo-link">
+              <img src="../img/footer/fullw.png" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+            </a>
+            <div class="footer-info">
+              <p class="footer-text">&copy; 2026 spot.ph. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="../scripts/main.js?v=20260531v"></script>
+    <script src="../scripts/spot-data.js?v=20260531j"></script>
+    <script src="../scripts/spot-knowledge.js?v=20260531m"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../scripts/dashboard.js?v=20260531j"></script>
+    <script src="../scripts/assistant-widget.js?v=20260531ab"></script>
+
+    <button class="scroll-top-btn" aria-label="Scroll to top" role="button" tabindex="0">
+      <img src="../img/icons/arrowup.png" alt="Scroll to top" class="scroll-top-icon" loading="lazy" decoding="async" />
+    </button>
+  </body>
+</html>

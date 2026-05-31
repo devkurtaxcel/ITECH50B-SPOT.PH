@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | spot.ph</title>
+    <link rel="stylesheet" href="../styles/main.css?v=20260531ae" />
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+    <link rel="icon" href="../img/logo(trans)/6.png" type="image/png">
+  </head>
+  <body class="page-loading">
+    <div class="page-skeleton" aria-hidden="true">
+      <div class="page-skeleton__header"></div>
+      <div class="page-skeleton__body">
+        <span class="page-skeleton__line page-skeleton__line--eyebrow"></span>
+        <span class="page-skeleton__line page-skeleton__line--title"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy page-skeleton__line--short"></span>
+        <div class="page-skeleton__grid">
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+        </div>
+      </div>
+    </div>
+    <div data-layer="main-container" class="desktop">
+      <header data-layer="header" class="header">
+        <a href="../index.html" data-layer="logo" class="logo">spot.ph</a>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav id="site-nav" data-layer="navigation" class="nav" role="navigation" aria-hidden="true">
+          <a href="dashboard.html" class="nav-item">Dashboard</a>
+          <a href="fare.html" class="nav-item">Fare</a>
+          <a href="routes.html" class="nav-item">Routes</a>
+          <a href="directory.html" class="nav-item">Drivers</a>
+          <a href="driver.html" class="nav-item">Portal</a>
+          <a href="gas.html" class="nav-item">Gas</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+      </header>
+
+      <main class="main-content main-content--atmosphere">
+        <div class="page-atmosphere" aria-hidden="true">
+          <span class="page-atmosphere__grid"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--one"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--two"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--three"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--left"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--right"></span>
+        </div>
+        <section class="section">
+          <div class="section-heading section-heading--with-visual">
+            <div class="section-heading__visual" aria-hidden="true">
+              <dotlottie-wc class="lottie-animation" src="https://lottie.host/24d03155-f10c-4742-9b4d-4242e5fd9eec/3iv5T6cV0M.lottie" data-lottie-src="https://lottie.host/24d03155-f10c-4742-9b4d-4242e5fd9eec/3iv5T6cV0M.lottie" autoplay loop aria-hidden="true"></dotlottie-wc>
+            </div>
+            <div class="section-heading__content">
+              <h2 class="section-title">Contact spot.ph</h2>
+              <p class="page-intro">Send us a message.</p>
+            </div>
+          </div>
+          <div class="calculator-container contact-container">
+            
+            <form class="contact-form" action="https://formspree.io/f/xangdepr" method="POST" aria-label="Contact form">
+              <label for="contact-name">Name</label>
+              <input id="contact-name" name="name" type="text" placeholder="Your name" required aria-required="true" />
+
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="email" type="email" placeholder="you@example.com" required aria-required="true" />
+
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" placeholder="How can we help?" rows="6" required aria-required="true"></textarea>
+
+              
+              <input type="hidden" name="_subject" value="New message from spot.ph contact form" />
+              
+              <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />
+
+              <div class="form-actions">
+                <button type="submit" class="cta-button" aria-label="Send message">Send Message</button>
+                <button type="reset" class="cta-button secondary" aria-label="Reset form">Reset</button>
+              </div>
+            </form>
+            <p class="muted-text">We will get back to you by email.</p>
+            
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <a href="../index.html" class="footer-logo-link">
+              <img src="../img/footer/fullw.png" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+            </a>
+            <div class="footer-info">
+              <p class="footer-text">&copy; 2026 spot.ph. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="../scripts/main.js?v=20260531v"></script>
+    <script src="../scripts/spot-data.js?v=20260531j"></script>
+    <script src="../scripts/spot-knowledge.js?v=20260531m"></script>
+    <script src="../scripts/assistant-widget.js?v=20260531ab"></script>
+    
+    <button class="scroll-top-btn" aria-label="Scroll to top" role="button" tabindex="0">
+      <img src="../img/icons/arrowup.png" alt="Scroll to top" class="scroll-top-icon" loading="lazy" decoding="async" />
+    </button>
+  </body>
+</html>

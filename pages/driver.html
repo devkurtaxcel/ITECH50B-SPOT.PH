@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Driver Portal | spot.ph</title>
+    <link rel="stylesheet" href="../styles/main.css?v=20260531ae" />
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+    <link rel="icon" href="../img/logo(trans)/6.png" type="image/png">
+  </head>
+  <body class="page-loading">
+    <div class="page-skeleton" aria-hidden="true">
+      <div class="page-skeleton__header"></div>
+      <div class="page-skeleton__body">
+        <span class="page-skeleton__line page-skeleton__line--eyebrow"></span>
+        <span class="page-skeleton__line page-skeleton__line--title"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy"></span>
+        <span class="page-skeleton__line page-skeleton__line--copy page-skeleton__line--short"></span>
+        <div class="page-skeleton__grid">
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+          <span class="page-skeleton__card"></span>
+        </div>
+      </div>
+    </div>
+    <div data-layer="main-container" class="desktop">
+      <header data-layer="header" class="header">
+        <a href="../index.html" data-layer="logo" class="logo">spot.ph</a>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav id="site-nav" data-layer="navigation" class="nav" role="navigation" aria-hidden="true">
+          <a href="dashboard.html" class="nav-item">Dashboard</a>
+          <a href="fare.html" class="nav-item">Fare</a>
+          <a href="routes.html" class="nav-item">Routes</a>
+          <a href="directory.html" class="nav-item">Drivers</a>
+          <a href="driver.html" class="nav-item">Portal</a>
+          <a href="gas.html" class="nav-item">Gas</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+      </header>
+
+      <main class="main-content main-content--atmosphere">
+        <div class="page-atmosphere" aria-hidden="true">
+          <span class="page-atmosphere__grid"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--one"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--two"></span>
+          <span class="page-atmosphere__orb page-atmosphere__orb--three"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--left"></span>
+          <span class="page-atmosphere__beam page-atmosphere__beam--right"></span>
+        </div>
+        <section class="section driver-portal-section">
+          <div class="section-heading section-heading--with-visual">
+            <div class="section-heading__visual section-heading__visual--portal" aria-hidden="true">
+              <dotlottie-wc class="lottie-animation" src="https://lottie.host/0fe696b4-a8f8-426d-b3de-22b00691d470/Dk4Cjv9PCX.lottie" data-lottie-src="https://lottie.host/0fe696b4-a8f8-426d-b3de-22b00691d470/Dk4Cjv9PCX.lottie" autoplay loop></dotlottie-wc>
+            </div>
+            <div class="section-heading__content">
+              <h2 class="section-title">Driver Portal</h2>
+              <p class="page-intro">Update your profile, vehicle details, and location.</p>
+            </div>
+          </div>
+
+          <div id="driver-portal-feedback" class="driver-portal-feedback" role="status" aria-live="polite">Ready. Your changes stay on this device.</div>
+
+          <div class="driver-portal-layout">
+            <form id="driver-portal-form" class="driver-portal-card driver-portal-form">
+              <div class="driver-portal-card__head">
+                <div>
+                  <p class="driver-portal-card__eyebrow">Profile Setup</p>
+                  <h3>Driver record</h3>
+                </div>
+                <p class="driver-portal-card__copy">Saved here, then shown on the local dashboard and driver list.</p>
+              </div>
+
+              <div class="driver-portal-field-grid">
+                <div class="form-group">
+                  <label for="driver-name">Full Name</label>
+                  <input id="driver-name" name="name" class="form-input" type="text" placeholder="Juan Dela Cruz" required />
+                </div>
+                <div class="form-group">
+                  <label for="driver-phone">Mobile Number</label>
+                  <input id="driver-phone" name="phone" class="form-input" type="tel" placeholder="0912-345-6789" required />
+                </div>
+                <div class="form-group">
+                  <label for="driver-emergency-contact">Emergency Contact</label>
+                  <input id="driver-emergency-contact" name="emergencyContact" class="form-input" type="text" placeholder="Dispatcher or family contact" />
+                </div>
+                <div class="form-group">
+                  <label for="driver-route">Assigned Route</label>
+                  <select id="driver-route" name="route" class="form-input">
+                    <option value="trece">Trece Route</option>
+                    <option value="dasma">Dasma Route</option>
+                    <option value="alfonso">Alfonso Route</option>
+                    <option value="olivarez">Olivarez Route</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="driver-portal-divider"></div>
+
+              <div class="driver-portal-card__head">
+                <div>
+                  <p class="driver-portal-card__eyebrow">Vehicle Registration</p>
+                  <h3>Vehicle details</h3>
+                </div>
+              </div>
+
+              <div class="driver-portal-field-grid">
+                <div class="form-group">
+                  <label for="driver-vehicle-type">Vehicle Type</label>
+                  <select id="driver-vehicle-type" name="vehicleType" class="form-input">
+                    <option value="jeepney">Jeepney</option>
+                    <option value="bus">Bus</option>
+                    <option value="tricycle">Tricycle</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="driver-plate-number">Plate Number</label>
+                  <input id="driver-plate-number" name="plateNumber" class="form-input" type="text" placeholder="ABC-1234" required />
+                </div>
+                <div class="form-group">
+                  <label for="driver-vehicle-model">Vehicle Model</label>
+                  <input id="driver-vehicle-model" name="vehicleModel" class="form-input" type="text" placeholder="Modern Jeep / Aircon Bus / Tricycle" />
+                </div>
+                <div class="form-group">
+                  <label for="driver-vehicle-color">Vehicle Color</label>
+                  <input id="driver-vehicle-color" name="vehicleColor" class="form-input" type="text" placeholder="Blue and white" />
+                </div>
+                <div class="form-group">
+                  <label for="driver-seat-capacity">Seat Capacity</label>
+                  <input id="driver-seat-capacity" name="seatCapacity" class="form-input" type="number" min="1" step="1" />
+                </div>
+                <div class="form-group">
+                  <label for="driver-seats-available">Seats Currently Available</label>
+                  <input id="driver-seats-available" name="seatsAvailable" class="form-input" type="number" min="0" step="1" />
+                </div>
+                <div class="form-group">
+                  <label for="driver-operator-name">Operator / Cooperative</label>
+                  <input id="driver-operator-name" name="operatorName" class="form-input" type="text" placeholder="Route cooperative or operator name" />
+                </div>
+                <div class="form-group">
+                  <label for="driver-terminal">Terminal / Base</label>
+                  <input id="driver-terminal" name="terminal" class="form-input" type="text" placeholder="Indang Transport Terminal" />
+                </div>
+              </div>
+
+              <div class="driver-portal-divider"></div>
+
+              <div class="driver-portal-card__head">
+                <div>
+                  <p class="driver-portal-card__eyebrow">Operations</p>
+                  <h3>Status and visibility</h3>
+                </div>
+              </div>
+
+              <div class="driver-portal-field-grid">
+                <div class="form-group">
+                  <label for="driver-status">Current Status</label>
+                  <select id="driver-status" name="status" class="form-input">
+                    <option value="available">Available</option>
+                    <option value="limited">Limited</option>
+                    <option value="unavailable">Unavailable</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="driver-schedule">Operating Schedule</label>
+                  <input id="driver-schedule" name="schedule" class="form-input" type="text" placeholder="5:00 AM - 9:00 PM" />
+                </div>
+                <div class="form-group">
+                  <label for="driver-last-trip-time">Last Trip Time</label>
+                  <input id="driver-last-trip-time" name="lastTripTime" class="form-input" type="text" placeholder="8:45 PM" />
+                </div>
+                <div class="form-group form-group--toggle">
+                  <label for="driver-public-visible">Show on the dashboard and driver list</label>
+                  <input id="driver-public-visible" name="publicVisible" type="checkbox" checked />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="driver-public-note">Public note</label>
+                <textarea id="driver-public-note" name="publicNote" class="form-input" rows="4" placeholder="Add a short note for riders."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="driver-bio">Profile summary</label>
+                <textarea id="driver-bio" name="bio" class="form-input" rows="4" placeholder="Write a short profile."></textarea>
+              </div>
+
+              <div class="driver-portal-actions">
+                <button type="submit" class="cta-button">Save Profile</button>
+                <button type="button" id="driver-reset-btn" class="cta-button secondary">Reset Profile</button>
+              </div>
+            </form>
+
+            <div class="driver-portal-sidebar">
+              <article class="driver-portal-card">
+                <div class="driver-portal-card__head">
+                  <div>
+                    <p class="driver-portal-card__eyebrow">Live Summary</p>
+                    <h3>Public status</h3>
+                  </div>
+                </div>
+                <div class="driver-status-pill" id="driver-status-pill">Available</div>
+                <h4 id="driver-summary-name" class="driver-summary-name">No profile saved yet</h4>
+                <p id="driver-summary-route" class="driver-summary-route">Choose a route and save your profile.</p>
+                <div class="driver-summary-grid">
+                  <div>
+                    <span>Vehicle</span>
+                    <strong id="driver-summary-vehicle">-</strong>
+                  </div>
+                  <div>
+                    <span>Seats</span>
+                    <strong id="driver-summary-seats">-</strong>
+                  </div>
+                  <div>
+                    <span>Directory Visibility</span>
+                    <strong id="driver-summary-visibility">On</strong>
+                  </div>
+                  <div>
+                    <span>Last Saved</span>
+                    <strong id="driver-summary-updated">Not yet saved</strong>
+                  </div>
+                </div>
+                <div class="driver-summary-links">
+                  <a href="dashboard.html" class="cta-button secondary">Open Dashboard</a>
+                  <a href="directory.html" class="cta-button secondary">Open Directory</a>
+                </div>
+              </article>
+
+              <article class="driver-portal-card">
+                <div class="driver-portal-card__head">
+                  <div>
+                    <p class="driver-portal-card__eyebrow">GPS Tracking</p>
+                    <h3>Location controls</h3>
+                  </div>
+                  <p class="driver-portal-card__copy">Location updates stay on this device.</p>
+                </div>
+                <div class="driver-gps-grid">
+                  <div>
+                    <span>Coordinates</span>
+                    <strong id="driver-location-coordinates">14.1968, 120.8778</strong>
+                  </div>
+                  <div>
+                    <span>Last GPS update</span>
+                    <strong id="driver-location-updated">Not yet synced</strong>
+                  </div>
+                  <div>
+                    <span>Sharing status</span>
+                    <strong id="driver-location-status">Paused</strong>
+                  </div>
+                </div>
+                <div class="driver-portal-actions driver-portal-actions--stacked">
+                  <button type="button" id="driver-gps-start-btn" class="cta-button">Start GPS</button>
+                  <button type="button" id="driver-gps-stop-btn" class="cta-button secondary">Stop GPS</button>
+                  <button type="button" id="driver-gps-once-btn" class="cta-button secondary">Use Current Location</button>
+                </div>
+              </article>
+
+              <article class="driver-portal-card">
+                <div class="driver-portal-card__head">
+                  <div>
+                    <p class="driver-portal-card__eyebrow">Public Preview</p>
+                    <h3>Public preview</h3>
+                  </div>
+                </div>
+                <div class="driver-preview-card">
+                  <div class="driver-preview-card__avatar" id="driver-preview-avatar">DR</div>
+                  <div class="driver-preview-card__copy">
+                    <h4 id="driver-preview-name">Driver profile preview</h4>
+                    <p id="driver-preview-note">Save your details to preview your public card.</p>
+                  </div>
+                </div>
+                <div class="driver-preview-list" id="driver-preview-list"></div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <a href="../index.html" class="footer-logo-link">
+              <img src="../img/footer/fullw.png" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+            </a>
+            <div class="footer-info">
+              <p class="footer-text">&copy; 2026 spot.ph. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="../scripts/main.js?v=20260531v"></script>
+    <script src="../scripts/spot-data.js?v=20260531j"></script>
+    <script src="../scripts/spot-knowledge.js?v=20260531m"></script>
+    <script src="../scripts/driver-portal.js?v=20260531b"></script>
+    <script src="../scripts/assistant-widget.js?v=20260531ab"></script>
+
+    <button class="scroll-top-btn" aria-label="Scroll to top" role="button" tabindex="0">
+      <img src="../img/icons/arrowup.png" alt="Scroll to top" class="scroll-top-icon" loading="lazy" decoding="async" />
+    </button>
+  </body>
+</html>
