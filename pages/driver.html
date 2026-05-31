@@ -36,10 +36,10 @@
           <a href="fare.html" class="nav-item">Fare</a>
           <a href="routes.html" class="nav-item">Routes</a>
           <a href="directory.html" class="nav-item">Drivers</a>
-          <a href="driver.html" class="nav-item">Portal</a>
           <a href="gas.html" class="nav-item">Gas</a>
           <a href="about.html" class="nav-item">About</a>
           <a href="contact.html" class="nav-item">Contact</a>
+          <a href="driver.html" class="nav-item nav-item--cta">Join as Driver</a>
         </nav>
       </header>
 
@@ -64,6 +64,26 @@
           </div>
 
           <div id="driver-portal-feedback" class="driver-portal-feedback" role="status" aria-live="polite">Ready. Your changes stay on this device.</div>
+
+          <div class="driver-onboarding-panel">
+            <div class="onboarding-pathway">
+              <div class="onboarding-pathway__icon" aria-hidden="true">📝</div>
+              <div class="onboarding-pathway__content">
+                <h4>New Driver Registration</h4>
+                <p>Register your vehicle and route assignment to appear on the public commuter map and directory.</p>
+                <button type="button" class="cta-button" onclick="document.getElementById('driver-portal-form').scrollIntoView({ behavior: 'smooth' })">Register Vehicle</button>
+              </div>
+            </div>
+            <div class="onboarding-pathway__divider" aria-hidden="true"></div>
+            <div class="onboarding-pathway">
+              <div class="onboarding-pathway__icon" aria-hidden="true">📡</div>
+              <div class="onboarding-pathway__content">
+                <h4>Manage Active Shift</h4>
+                <p>Start your shift, toggle availability status, and share your simulated GPS location in real-time.</p>
+                <button type="button" class="cta-button secondary" onclick="document.getElementById('driver-gps-start-btn').scrollIntoView({ behavior: 'smooth' })">Go to Shift Controls</button>
+              </div>
+            </div>
+          </div>
 
           <div class="driver-portal-layout">
             <form id="driver-portal-form" class="driver-portal-card driver-portal-form">
