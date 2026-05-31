@@ -6945,16 +6945,16 @@ html[data-theme="dark"] .driver-portal-divider {
   }
 
   .section-heading--with-visual {
-    gap: 0;
+    gap: 12px;
   }
 
   .section-heading--with-visual .section-heading__visual {
-    margin-bottom: -60px;
+    margin-bottom: 0;
   }
 
   .section-heading--with-visual .section-heading__content {
-    gap: 0;
-    margin-top: -14px;
+    gap: 8px;
+    margin-top: 0;
   }
 
   .section-heading--with-visual .section-heading__content .section-title {
