@@ -523,7 +523,8 @@ document.addEventListener('DOMContentLoaded', function() {
           });
 
           if (!response.ok) {
-            throw new Error('AI provider request failed');
+            const errText = await response.text().catch(function() { return 'N/A'; });
+            throw new Error('AI provider request failed (status ' + response.status + '): ' + errText);
           }
 
           const payload = await response.json();
@@ -546,6 +547,7 @@ document.addEventListener('DOMContentLoaded', function() {
           setStatus('Local grounded answers are active.', 'local');
         }
       } catch (error) {
+        console.error('Client-side assistant request failed:', error);
         const fallback = 'The assistant could not reply right now.';
         removeTypingIndicator(typingIndicator);
         state.history.push({ role: 'assistant', content: fallback, meta: 'Request error' });
@@ -606,6 +608,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setStatus('Local grounded answers are active.', 'local');
       }
     } catch (error) {
+      console.error('Server-side assistant request failed:', error);
       const fallback = 'The assistant could not reply right now.';
       removeTypingIndicator(typingIndicator);
       state.history.push({ role: 'assistant', content: fallback, meta: 'Request error' });
