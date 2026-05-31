@@ -55,11 +55,14 @@
   ];
 
   const distanceData = {
-    trece: { trece: 0, alfonso: 25, dasma: 35, indang: 10, olivarez: 40 },
-    alfonso: { trece: 25, alfonso: 0, dasma: 30, indang: 18, olivarez: 22 },
-    dasma: { trece: 35, alfonso: 30, dasma: 0, indang: 18, olivarez: 45 },
-    indang: { trece: 10, alfonso: 18, dasma: 18, indang: 0, olivarez: 30 },
-    olivarez: { trece: 40, alfonso: 22, dasma: 45, indang: 30, olivarez: 0 }
+    trece: { trece: 0, alfonso: 25, dasma: 35, indang: 10, olivarez: 40, gma: 22, silang: 28, carmona: 30 },
+    alfonso: { trece: 25, alfonso: 0, dasma: 30, indang: 18, olivarez: 22, gma: 45, silang: 30, carmona: 48 },
+    dasma: { trece: 35, alfonso: 30, dasma: 0, indang: 18, olivarez: 45, gma: 14, silang: 15, carmona: 18 },
+    indang: { trece: 10, alfonso: 18, dasma: 18, indang: 0, olivarez: 30, gma: 30, silang: 32, carmona: 38 },
+    olivarez: { trece: 40, alfonso: 22, dasma: 45, indang: 30, olivarez: 0, gma: 34, silang: 18, carmona: 36 },
+    gma: { trece: 22, alfonso: 45, dasma: 14, indang: 30, olivarez: 34, gma: 0, silang: 16, carmona: 6 },
+    silang: { trece: 28, alfonso: 30, dasma: 15, indang: 32, olivarez: 18, gma: 16, silang: 0, carmona: 18 },
+    carmona: { trece: 30, alfonso: 48, dasma: 18, indang: 38, olivarez: 36, gma: 6, silang: 18, carmona: 0 }
   };
 
   const locationLabels = {
@@ -67,14 +70,17 @@
     trece: 'Trece',
     alfonso: 'Alfonso',
     dasma: 'Dasma',
-    olivarez: 'Olivarez'
+    olivarez: 'Olivarez',
+    gma: 'GMA',
+    silang: 'Silang',
+    carmona: 'Carmona'
   };
 
   const passengerAliases = {
-    regular: ['regular', 'standard'],
-    student: ['student'],
-    senior: ['senior', 'senior citizen'],
-    pwd: ['pwd', 'person with disability']
+    regular: ['regular', 'standard', 'normal'],
+    student: ['student', 'estudyante', 'studyante', 'sestudyante', 'estudiante', 'estudyanti'],
+    senior: ['senior', 'senior citizen', 'sc', 'senyor'],
+    pwd: ['pwd', 'person with disability', 'disabled']
   };
 
   const baseFleet = [
@@ -333,9 +339,9 @@
 
   function detectVehicleType(text) {
     const haystack = String(text || '').toLowerCase();
-    if (haystack.includes('tricycle')) return 'tricycle';
+    if (haystack.includes('tricycle') || haystack.includes('trike') || haystack.includes('tric')) return 'tricycle';
     if (haystack.includes('bus')) return 'bus';
-    if (haystack.includes('jeep') || haystack.includes('jeepney')) return 'jeepney';
+    if (haystack.includes('jeep') || haystack.includes('jeepney') || haystack.includes('dyip') || haystack.includes('jip')) return 'jeepney';
     return null;
   }
 

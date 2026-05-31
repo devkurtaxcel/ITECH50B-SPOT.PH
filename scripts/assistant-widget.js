@@ -142,126 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function parsePassengerMix(text) {
-    const mix = { regular: 0, student: 0, senior: 0, pwd: 0 };
-    let matched = false;
-    const patterns = {
-      regular: /(?:a\s+)?(\d+)\s*(?:more\s+|additional\s+|extra\s+)?(?:regulars?|standard(?:\s+passengers?)?)/gi,
-      student: /(?:a\s+)?(\d+)\s*(?:more\s+|additional\s+|extra\s+)?(?:students?|student passengers?)/gi,
-      senior: /(?:a\s+)?(\d+)\s*(?:more\s+|additional\s+|extra\s+)?(?:seniors?|senior citizens?)/gi,
-      pwd: /(?:a\s+)?(\d+)\s*(?:more\s+|additional\s+|extra\s+)?(?:pwds?|pwd passengers?|persons?\s+with\s+disabilit(?:y|ies))/gi
-    };
-
-    Object.keys(patterns).forEach(function(type) {
-      let match;
-      while ((match = patterns[type].exec(text)) !== null) {
-        mix[type] += Number(match[1]) || 0;
-        matched = true;
-      }
-    });
-
-    if (!matched) {
-      mix.regular = 1;
-    }
-
-    mix.total = mix.regular + mix.student + mix.senior + mix.pwd;
-    if (mix.total < 1) {
-      mix.regular = 1;
-      mix.total = 1;
-    }
-
-    return mix;
-  }
-
-  function formatPassengerSummary(mix) {
-    const parts = [];
-    if (mix.student) parts.push(`${mix.student} student${mix.student === 1 ? '' : 's'}`);
-    if (mix.regular) parts.push(`${mix.regular} regular`);
-    if (mix.senior) parts.push(`${mix.senior} senior${mix.senior === 1 ? '' : 's'}`);
-    if (mix.pwd) parts.push(`${mix.pwd} PWD${mix.pwd === 1 ? '' : 's'}`);
-    return parts.join(', ');
-  }
-
-  function orderedFareLocations(text) {
-    const source = String(text || '').toLowerCase();
-    const keys = ['indang', 'trece', 'alfonso', 'dasma', 'olivarez'];
-
-    for (let fromIndex = 0; fromIndex < keys.length; fromIndex += 1) {
-      for (let toIndex = 0; toIndex < keys.length; toIndex += 1) {
-        const fromKey = keys[fromIndex];
-        const toKey = keys[toIndex];
-        if (fromKey === toKey) continue;
-
-        const fromToPattern = new RegExp(`\\bfrom\\s+${fromKey}\\b[\\s\\S]{0,80}\\bto\\s+${toKey}\\b`);
-        const toFromPattern = new RegExp(`\\bto\\s+${toKey}\\b[\\s\\S]{0,80}\\bfrom\\s+${fromKey}\\b`);
-
-        if (fromToPattern.test(source) || toFromPattern.test(source)) {
-          return [fromKey, toKey];
-        }
-      }
-    }
-
-    return knowledge.findAllLocationKeys(text);
-  }
-
-  function clientFareAnswer(text) {
-    const value = String(text || '');
-    const lower = value.toLowerCase();
-    const locations = orderedFareLocations(value);
-    const isFareQuestion = lower.includes('fare') || lower.includes('pamasahe') || (lower.includes('how much') && locations.length >= 2);
-    if (!isFareQuestion || locations.length < 2) return '';
-
-    const vehicleType = knowledge.detectVehicleType(value) || 'jeepney';
-    const passengerMix = parsePassengerMix(value);
-    const faresByType = {};
-
-    ['regular', 'student', 'senior', 'pwd'].forEach(function(type) {
-      if (passengerMix[type] > 0) {
-        faresByType[type] = knowledge.getFareEstimate(locations[0], locations[1], vehicleType, type);
-      }
-    });
-
-    const estimates = Object.keys(faresByType).map(function(type) {
-      return faresByType[type];
-    }).filter(Boolean);
-
-    if (!estimates.length) return '';
-
-    const baseEstimate = estimates[0];
-    if (passengerMix.total <= 1) {
-      const passengerType = ['regular', 'student', 'senior', 'pwd'].find(function(type) {
-        return passengerMix[type] > 0;
-      }) || 'regular';
-      return [
-        `${knowledge.titleCase(vehicleType)} fare from ${knowledge.titleCase(baseEstimate.startLocation)} to ${knowledge.titleCase(baseEstimate.destination)} for a ${passengerType} passenger.`,
-        'Final fare',
-        `**${knowledge.formatCurrency(baseEstimate.fare)}**`,
-        `Distance: ${baseEstimate.distanceKm} km.`
-      ].join('\n');
-    }
-
-    const totalFare = ['regular', 'student', 'senior', 'pwd'].reduce(function(sum, type) {
-      if (!passengerMix[type] || !faresByType[type]) return sum;
-      return sum + (passengerMix[type] * faresByType[type].fare);
-    }, 0);
-
-    const breakdown = ['regular', 'student', 'senior', 'pwd'].filter(function(type) {
-      return passengerMix[type] && faresByType[type];
-    }).map(function(type) {
-      const label = type === 'pwd' ? 'PWD' : type;
-      const plural = passengerMix[type] === 1 ? '' : 's';
-      return `${passengerMix[type]} ${label}${plural} at ${knowledge.formatCurrency(faresByType[type].fare)} each`;
-    }).join(', ');
-
-    return [
-      `${knowledge.titleCase(vehicleType)} fare from ${knowledge.titleCase(baseEstimate.startLocation)} to ${knowledge.titleCase(baseEstimate.destination)} for ${passengerMix.total} passengers (${formatPassengerSummary(passengerMix)}).`,
-      'Final fare',
-      `**${knowledge.formatCurrency(totalFare)} total**`,
-      `Breakdown: ${breakdown}.`,
-      `Distance: ${baseEstimate.distanceKm} km.`
-    ].join('\n');
-  }
-
   function setStatus(text, mode) {
     statusEl.textContent = text;
     statusEl.dataset.mode = mode || 'neutral';
@@ -284,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      if (/^(final fare|cheapest price|highest price|current price)$/i.test(trimmed)) {
+      if (/^(final fare|kabuuang pamasahe|cheapest price|highest price|current price|pinakamurang presyo|pinakamataas na presyo|kasalukuyang presyo)$/i.test(trimmed)) {
         lineEl.classList.add('assistant-message__line--fare-label');
         lineEl.classList.add('assistant-message__line--price-label');
       }
@@ -563,14 +443,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const payload = await response.json();
       if (!response.ok) {
         throw new Error(payload && payload.error ? payload.error : 'Assistant request failed.');
-      }
-
-      const exactFareAnswer = clientFareAnswer(text);
-      if (exactFareAnswer) {
-        payload.answer = exactFareAnswer;
-        payload.mode = 'grounded';
-        payload.provider = 'local';
-        payload.note = 'Calculated from site fare data';
       }
 
       const meta = payload.note || (payload.mode === 'ai'
