@@ -7868,7 +7868,17 @@ html[data-theme="dark"] .assistant-panel__status[data-mode="warning"] {
 }
 
 .onboarding-pathway__icon {
-  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(0, 173, 181, 0.15);
+}
+
+.onboarding-svg-icon {
+  stroke: var(--primary);
 }
 
 .onboarding-pathway__content h4 {
